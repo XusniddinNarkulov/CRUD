@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import AddTask from "./components/AddTask";
+import List from "./components/List";
+import { Title } from "./components/Title";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   return (
+      <div className="container flex lists">
+         <div className="one_list">
+            <Title />
+            <AddTask />
+
+            <div>
+               <List />
+
+               <h2 id="completed_title">Completed</h2>
+               <ul id="completed_list"></ul>
+            </div>
+         </div>
+      </div>
+   );
 }
 
 export default App;
