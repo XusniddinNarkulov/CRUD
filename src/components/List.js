@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
    removeTaskAction,
    addTaskAction,
    updateAction,
+   listAction,
 } from "../redux/actions";
 
 const List = (props) => {
-   const { list, removeTaskAction } = props;
+   console.log(props);
+   const { list, removeTaskAction, listAction, updateAction } = props;
 
    const [edit, setEdit] = useState();
 
-   const editFunc = () => {
-      setEdit(true);
-   };
+   useEffect(() => {
+      listAction();
+   }, []);
 
    return (
       <ul id="task_list">
@@ -89,16 +91,17 @@ const List = (props) => {
                      >
                         <i className="fa fa-pencil" aria-hidden="true"></i>
                      </button> */}
-                     <button
-                        type="button"
-                        className="delete"
-                        onClick={() => {
-                           removeTaskAction(id);
-                        }}
-                     >
-                        <i className="fa fa-trash-o" aria-hidden="true"></i>
-                     </button>
+                     <button type="submit"></button>
                   </form>
+                  <button
+                     // type="submit"
+                     className="delete"
+                     onClick={() => {
+                        removeTaskAction(id);
+                     }}
+                  >
+                     <i className="fa fa-trash-o" aria-hidden="true"></i>
+                  </button>
                </li>
             );
          })}
@@ -108,6 +111,11 @@ const List = (props) => {
 
 const mapStateToProps = (state) => state;
 
-const mapDispatchToProps = { removeTaskAction, addTaskAction };
+const mapDispatchToProps = {
+   removeTaskAction,
+   addTaskAction,
+   listAction,
+   updateAction,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);
