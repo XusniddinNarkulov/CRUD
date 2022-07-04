@@ -8,6 +8,13 @@ export const initialState = {
    ],
 };
 
+const arr = initialState.list.map((val) => {
+   {
+      return { ...val, task: "123" };
+   }
+});
+console.log(arr);
+
 export const reducers = (state = initialState, { type, payload }) => {
    switch (type) {
       case ADD:
@@ -18,13 +25,15 @@ export const reducers = (state = initialState, { type, payload }) => {
             list: state.list.filter((task) => task.id !== payload.id),
          };
       case UPDATE:
+         const arr = state.list.map((val) => {
+            if (val.id === payload.id) {
+               return { ...val, task: payload.text };
+            }
+         });
+
          return {
             ...state,
-            list: state.list.map((val) => {
-               if (val.id === payload.id) {
-                  val.task = payload.text;
-               }
-            }),
+            list: arr,
          };
       default:
          return state;

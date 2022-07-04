@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 export const Title = (props) => {
    return (
       <div className="header_title">
-         <span className="input_title">Your to do list</span>
-         <button type="button" className="edit_title_button">
+         <span className="input_title" contentEditable>
+            Your to do list
+         </span>
+         {/* <button type="button" className="edit_title_button">
             <i className="fa fa-pencil" aria-hidden="true"></i>
-         </button>
+         </button> */}
       </div>
    );
 };

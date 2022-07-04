@@ -8,6 +8,7 @@ import {
 
 const List = (props) => {
    const { list, removeTaskAction } = props;
+
    const [edit, setEdit] = useState();
 
    const editFunc = () => {
@@ -19,14 +20,16 @@ const List = (props) => {
          {list.map((item) => {
             const { task, id } = item;
             return (
-               <form
-                  action=""
-                  onSubmit={(e) => {
-                     e.preventDefault();
-                     updateAction(id, edit);
-                  }}
-               >
-                  <li key={id}>
+               <li key={id}>
+                  <form
+                     action=""
+                     onSubmit={(e) => {
+                        e.preventDefault();
+                        updateAction(id, edit);
+                        console.log(edit);
+                     }}
+                     style={{ width: "100%" }}
+                  >
                      <input type="checkbox" />
                      {/* {edit ? (
                      <span className="input" contentEditable>
@@ -61,12 +64,7 @@ const List = (props) => {
                         // disabled
                         className="input"
                         style={{
-                           width: "90%",
-                           overflowWrap: "break-word",
-                           wordWrap: "break-word",
-                           whiteSpace: "normal",
-                           wordBreak: "break-all",
-                           height: "auto",
+                           width: "80%",
                         }}
                         defaultValue={task}
                         onClick={(e) => {
@@ -100,8 +98,8 @@ const List = (props) => {
                      >
                         <i className="fa fa-trash-o" aria-hidden="true"></i>
                      </button>
-                  </li>
-               </form>
+                  </form>
+               </li>
             );
          })}
       </ul>

@@ -13,8 +13,8 @@ function App() {
             <div>
                <List />
 
-               <h2 id="completed_title">Completed</h2>
-               <ul id="completed_list"></ul>
+               {/* <h2 id="completed_title">Completed</h2>
+               <ul id="completed_list"></ul> */}
             </div>
          </div>
       </div>

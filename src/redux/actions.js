@@ -15,7 +15,7 @@ export const listAction = (list) => {
 export const addTaskAction = (task) => {
    return {
       type: ADD,
-      payload: { id: nanoid(), task },
+      payload: { id: nanoid(), task: task },
    };
 };
 

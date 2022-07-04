@@ -12,9 +12,11 @@ const AddTask = (props) => {
          onSubmit={(e) => {
             e.preventDefault();
             addTaskAction(val);
+            e.target.input.value = "";
          }}
       >
          <input
+            required
             type="text"
             id="input_task"
             name="input"
