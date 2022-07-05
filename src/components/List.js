@@ -7,7 +7,7 @@ import {
 } from "../redux/actions";
 
 const List = (props) => {
-   const { list, removeTaskAction } = props;
+   const { list, removeTaskAction, updateAction } = props;
 
    const [edit, setEdit] = useState();
 
@@ -108,6 +108,6 @@ const List = (props) => {
 
 const mapStateToProps = (state) => state;
 
-const mapDispatchToProps = { removeTaskAction, addTaskAction };
+const mapDispatchToProps = { removeTaskAction, addTaskAction, updateAction };
 
 export default connect(mapStateToProps, mapDispatchToProps)(List);

@@ -2,18 +2,8 @@ import { nanoid } from "nanoid";
 import { ADD, LIST, REMOVE, UPDATE } from "./actions";
 
 export const initialState = {
-   list: [
-      { id: nanoid(), task: "lorem1" },
-      { id: nanoid(), task: "lorem2" },
-   ],
+   list: [],
 };
-
-const arr = initialState.list.map((val) => {
-   {
-      return { ...val, task: "123" };
-   }
-});
-console.log(arr);
 
 export const reducers = (state = initialState, { type, payload }) => {
    switch (type) {
@@ -27,7 +17,7 @@ export const reducers = (state = initialState, { type, payload }) => {
       case UPDATE:
          const arr = state.list.map((val) => {
             if (val.id === payload.id) {
-               return { ...val, task: payload.text };
+               return (val.task = payload.text);
             }
          });
 
