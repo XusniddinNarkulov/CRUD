@@ -8,8 +8,9 @@ import {
 } from "../redux/actions";
 
 const List = (props) => {
-   console.log(props);
-   const { list, removeTaskAction, listAction, updateAction } = props;
+   // console.log(props);
+   const { removeTaskAction, listAction, updateAction } = props;
+   const { list } = props.reducers;
 
    const [edit, setEdit] = useState();
 

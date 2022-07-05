@@ -1,8 +1,8 @@
-import { nanoid } from "nanoid";
-import { ADD, LIST, REMOVE, UPDATE } from "./actions";
+import { ADD, ADD_USER, LIST, REMOVE, UPDATE, USERS } from "./actions";
 
 export const initialState = {
    list: [],
+   users: [],
 };
 
 export const reducers = (state = initialState, { type, payload }) => {
@@ -11,21 +11,12 @@ export const reducers = (state = initialState, { type, payload }) => {
          return { ...state, list: payload };
       case ADD:
          return { ...state, list: [payload, ...state.list] };
-      // case REMOVE:
-      //    return {
-      //       ...state,
-      //    };
-      // case UPDATE:
-      //    const arr = state.list.map((val) => {
-      //       if (val.id === payload.id) {
-      //          return { ...val, task: payload.text };
-      //       }
-      //    });
 
-      // return {
-      //    ...state,
-      //    list: arr,
-      // };
+      case USERS:
+         return { ...state, users: payload };
+      case ADD_USER:
+         return { ...state, users: [payload, ...state.users] };
+
       default:
          return state;
    }
