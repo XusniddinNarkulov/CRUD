@@ -7,13 +7,14 @@ export const UPDATE = "UPDATE";
 
 export const USERS = "USERS";
 export const ADD_USER = "ADD_USER";
+export const DELETE_USER = "DELETE_USER";
 
 //tasks
 
 export const listAction = () => {
    return (dispatch, getState) => {
       axios.get("http://localhost:3002/tasks").then((resp) => {
-         console.log(resp);
+         // console.log(resp);
          if (resp.status === 200) {
             dispatch({
                type: LIST,
@@ -84,6 +85,9 @@ export const postUserAction = (obj) => (dispatch) => {
 
 export const deleteUserAction = (id) => (dispatch) => {
    axios.delete(`http://localhost:3002/users/${id}`).then((res) => {
-      dispatch(getUsersAction());
+      dispatch({
+         type: DELETE_USER,
+         payload: { id: id },
+      });
    });
 };

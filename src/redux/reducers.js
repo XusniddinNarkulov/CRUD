@@ -1,8 +1,17 @@
-import { ADD, ADD_USER, LIST, REMOVE, UPDATE, USERS } from "./actions";
+import {
+   ADD,
+   ADD_USER,
+   DELETE_USER,
+   LIST,
+   REMOVE,
+   UPDATE,
+   USERS,
+} from "./actions";
 
 export const initialState = {
    list: [],
    users: [],
+   currentUser: null,
 };
 
 export const reducers = (state = initialState, { type, payload }) => {
@@ -33,25 +42,19 @@ export const reducers = (state = initialState, { type, payload }) => {
       case USERS:
          return { ...state, users: payload };
       case ADD_USER:
-         return { ...state, users: [payload, ...state.users] };
+         return {
+            ...state,
+            users: [payload, ...state.users],
+            currentUser: payload,
+         };
+      case DELETE_USER:
+         return {
+            ...state,
+            users: state.users.filter((user) => user.id !== payload.id),
+            currentUser: null,
+         };
 
       default:
          return state;
    }
 };
-
-let arr = [
-   { id: 1, text: "hello" },
-   { id: 2, text: "salom" },
-   { id: 3, text: "salom" },
-];
-
-let ar = arr.map((item) => {
-   let temp = Object.assign({}, item);
-   console.log(temp);
-   if (temp.id === 2) {
-      temp = { hello: "world" };
-   }
-   return temp;
-});
-console.log(ar);

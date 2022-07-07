@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const NavBar = (props) => {
    return (
@@ -25,9 +26,12 @@ export const NavBar = (props) => {
             <div className="sign-in ui inverted olive basic button">
                Sign In
             </div>
-            <div className="sign-up ui inverted violet basic button">
-               Sign Up
-            </div>
+
+            <Link to="/signup">
+               <div className="sign-up ui inverted violet basic button">
+                  Sign Up
+               </div>
+            </Link>
          </div>
       </div>
    );
