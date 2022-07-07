@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 export const NavBar = (props) => {
+   console.log(props);
+   const { currentUser } = props.state.reducers;
    return (
       <div
          className="nav"
@@ -23,21 +25,29 @@ export const NavBar = (props) => {
                justifyContent: "space-between",
             }}
          >
-            <div className="sign-in ui inverted olive basic button">
-               Sign In
-            </div>
-
-            <Link to="/signup">
-               <div className="sign-up ui inverted violet basic button">
-                  Sign Up
+            {currentUser ? (
+               <div className="ui inverted purple basic button">
+                  {currentUser.Username}
                </div>
-            </Link>
+            ) : (
+               <>
+                  <div className="sign-in ui inverted olive basic button">
+                     Sign In
+                  </div>
+
+                  <Link to="/signup">
+                     <div className="sign-up ui inverted violet basic button">
+                        Sign Up
+                     </div>
+                  </Link>
+               </>
+            )}
          </div>
       </div>
    );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({ state });
 
 const mapDispatchToProps = {};
 
