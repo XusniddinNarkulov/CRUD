@@ -8,12 +8,13 @@ import NavBar from "./components/NavBar";
 import SignUp from "./components/SignUp";
 import { Title } from "./components/Title";
 import ToDoListContainer from "./components/ToDoListContainer";
-import { getUsersAction } from "./redux/actions";
+import { getUsersAction, listAction } from "./redux/actions";
 
 function App(props) {
    const { getUsersAction } = props;
 
    useEffect(() => {
+      listAction();
       getUsersAction();
    }, []);
 
@@ -29,4 +30,4 @@ function App(props) {
    );
 }
 
-export default connect((s) => s, { getUsersAction })(App);
+export default connect((s) => s, { getUsersAction, listAction })(App);

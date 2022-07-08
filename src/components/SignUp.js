@@ -29,13 +29,15 @@ const SignUp = (props) => {
 
    const formOnSubmit = (obj) => {
       state.reducers.users.map((user) => {
+         if (obj.Username === user.Username) {
+            alert("bunday Username mavjud");
+            state.reducers.currentUser = false;
+            navigate(0);
+         }
          if (obj.Username !== user.Username) {
             postUserAction(obj);
             reset();
             navigate(-1);
-         }
-         if (obj.Username === user.Username) {
-            alert("bunday Username mavjud");
          }
       });
    };
