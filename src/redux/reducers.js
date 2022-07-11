@@ -51,7 +51,7 @@ export const reducers = (state = initialState, { type, payload }) => {
          return {
             ...state,
             users: state.users.filter((user) => user.id !== payload.id),
-            currentUser: false,
+            currentUser: null,
          };
 
       default:

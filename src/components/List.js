@@ -16,7 +16,7 @@ const List = (props) => {
 
    useEffect(() => {
       listAction();
-   }, [listAction]);
+   }, []);
 
    return (
       <ul id="task_list">

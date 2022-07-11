@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { useNavigate } from "react-router";
 import { Field, reduxForm } from "redux-form";
 import { postUserAction } from "../redux/actions";
+import { Navigate } from "react-router-dom";
 
 const renderField = (props) => {
    // console.log(props);
@@ -21,17 +22,21 @@ const renderField = (props) => {
    );
 };
 
-const SignUp = (props) => {
+const SignIn = (props) => {
    // console.log(props);
-   const { handleSubmit, postUserAction, reset, state } = props;
+   const { handleSubmit, reset, state } = props;
+
+   const navigate = useNavigate();
 
    const formOnSubmit = (obj) => {
       state.reducers.users.every((user) => {
-         if (user.Username === obj.Username) {
-            alert("bunday username mavjud");
+         if (user.Username === obj.Username && user.Password === obj.Password) {
+            state.reducers.currentUser = user;
+            // navigate(-1);
+            // <Navigate to="/" />;
          }
          if (user.Username !== obj.Username) {
-            postUserAction(obj);
+            alert("bunday username mavjud emas");
          }
       });
    };
@@ -51,7 +56,7 @@ const SignUp = (props) => {
                component={renderField}
             />
 
-            <button className="ui submit button">Sign Up</button>
+            <button className="ui submit button">Sign In</button>
          </form>
       </div>
    );
@@ -59,9 +64,8 @@ const SignUp = (props) => {
 
 const mapStateToProps = (state) => ({ state });
 
-const mapDispatchToProps = { postUserAction };
+const mapDispatchToProps = {};
 
-export default connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(reduxForm({ form: "SignUp" })(SignUp));
+export default reduxForm({ form: "Sign In" })(
+   connect(mapStateToProps, mapDispatchToProps)(SignIn)
+);

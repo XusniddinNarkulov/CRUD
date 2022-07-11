@@ -26,6 +26,7 @@ export const listAction = () => {
 };
 export const addTaskAction = (task) => (dispatch, getState) => {
    axios.post("http://localhost:3002/tasks", { task }, {}).then((res) => {
+      // console.log(res);
       if (res.status === 201) {
          dispatch({
             type: ADD,
@@ -85,9 +86,12 @@ export const postUserAction = (obj) => (dispatch) => {
 
 export const deleteUserAction = (id) => (dispatch) => {
    axios.delete(`http://localhost:3002/users/${id}`).then((res) => {
-      dispatch({
-         type: DELETE_USER,
-         payload: { id: id },
-      });
+      console.log(res);
+      if (res.status === 200) {
+         dispatch({
+            type: DELETE_USER,
+            payload: { id: id },
+         });
+      }
    });
 };
